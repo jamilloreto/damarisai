@@ -1,0 +1,16 @@
+.container {
+  height: calc(100dvh - 214px);
+  overflow-y: auto;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    height: calc(100dvh - 154px);
+    gap: 1.5rem;
+  }
+}

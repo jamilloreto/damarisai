@@ -1,0 +1,87 @@
+.container {
+  display: none;
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  height: 44px;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.history {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  height: 44px;
+  padding: 0 0.5rem;
+}
+
+.link:hover {
+  background-color: var(--main-hover-bg-color);
+}
+
+.date {
+  padding: 0 0.5rem;
+  color: var(--secondary-text-color);
+  margin: 0.5rem 0;
+}
+
+.wrapMessages {
+  height: calc(100vh - 153px);
+  overflow: auto;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+.messages {
+  font-size: var(--font-size-md);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+}
+
+.wrapMessage {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 2rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+.content {
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.btn {
+  color: var(--secondary-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.btn:hover {
+  background-color: var(--secondary-hover-bg-color);
+}
+
+.message:hover {
+  background-color: var(--main-hover-bg-color);
+}

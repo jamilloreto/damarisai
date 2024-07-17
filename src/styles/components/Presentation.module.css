@@ -1,0 +1,45 @@
+.container {
+  height: calc(100dvh - 214px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hello {
+  font-size: x-large;
+  background: linear-gradient(43deg, #4158d0 0%, #c850c0 16%, #ffcc70 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+.hello > * {
+  font-weight: 600;
+}
+
+.refresh {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  font-size: smaller;
+  gap: 0.5rem;
+  color: var(--secondary-text-color);
+  font-weight: normal;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 2rem;
+}
+
+.refresh:hover {
+  background-color: var(--main-hover-bg-color);
+}
+
+@media (min-width: 1280px) {
+  .hello {
+    font-size: xx-large;
+  }
+
+  .refresh {
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-md);
+  }
+}

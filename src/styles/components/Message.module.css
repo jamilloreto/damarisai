@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.p {
+  max-width: 80%;
+}
+
+.userText {
+  background-color: #e9e9ed;
+  color: var(--body-bg-color);
+  border-radius: 1rem 0 1rem 1rem;
+  padding: 0.75rem;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    gap: 1rem;
+  }
+}
