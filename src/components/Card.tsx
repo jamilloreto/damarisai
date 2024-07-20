@@ -1,19 +1,20 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import s from "@/styles/components/Card.module.css";
-import { model } from "@/lib";
+import { damaris } from "@/lib";
 import { useFormStore, useHistoryStore, useMessagesStore } from "@/store";
 import { v4 as uuidv4 } from "uuid";
-import { streamText } from "ai";
 
 interface Props {
   title: string;
 }
 
 export function Card({ title }: Props) {
-  const { messages, setMessage } = useMessagesStore();
+  const { messages } = useMessagesStore();
+  const { setTyping, setMessage } = useMessagesStore();
   const { createMessage, createReply } = useHistoryStore();
-  const { setDisabled } = useFormStore();
+  const { setDisabled, setLoading } = useFormStore();
   const onClick = async () => {
+    setLoading(true);
     setDisabled(true);
     const id = uuidv4();
     setMessage({ role: "user", content: title });
@@ -25,18 +26,17 @@ export function Card({ title }: Props) {
       },
       created_at: new Date(),
     });
-    const result = await streamText({
-      model,
-      system:
-        "Eres un asistente virtual útil. Tu nombre es Damaris. Sirves para la planificación de Viajes turísticos. Tus preguntas y respuestas deben ser precisos. Por cada lugar muestra como llegar, si tienen algunos servicios como restaurante, hospedaje, similares y el presupuesto por unos dias.",
-      messages: [...messages, { role: "user", content: title }],
-      maxTokens: 1000,
-    });
 
+    const result = await damaris({
+      messages: [...messages, { role: "user", content: title }],
+    });
+    setLoading(false);
     let res = "";
     for await (const part of result.textStream) {
       res += part;
+      setTyping(res);
     }
+    setTyping("");
     setMessage({ role: "assistant", content: res });
     createReply(id, { role: "assistant", content: res });
     setDisabled(false);

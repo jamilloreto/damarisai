@@ -3,60 +3,78 @@ import { Logo } from "./Logo";
 import {
   Bars3BottomRightIcon,
   PlusCircleIcon,
-  TrashIcon,
 } from "@heroicons/react/24/outline";
 import { Nav } from "./Nav";
 import { Form } from "./Form";
 import { useState } from "react";
 import { useFormStore, useHistoryStore, useMessagesStore } from "@/store";
 import { v4 as uuidv4 } from "uuid";
-import { streamText } from "ai";
-import { model } from "@/lib";
+import { damaris } from "@/lib";
 import Link from "next/link";
 import { Drawer } from "./Drawer";
+import { useGetIpInfo } from "@/hooks";
+import { Loading } from "./Loading";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export function Layout({ children }: Props) {
-  const { messages, setMessage } = useMessagesStore();
+  const { loading, error } = useGetIpInfo();
+  const { messages } = useMessagesStore();
+  const { setTyping, setMessage } = useMessagesStore();
   const { createMessage, createReply } = useHistoryStore();
   const [userMessage, setUserMessage] = useState<string>("");
-  const { setDisabled } = useFormStore();
+  const { setDisabled, setLoading } = useFormStore();
   const [open, setOpen] = useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setDisabled(true);
-    e.currentTarget.reset();
     e.preventDefault();
+    setDisabled(true);
+    setLoading(true);
+    const content = userMessage;
+    e.currentTarget.reset();
     const id = uuidv4();
-    setMessage({ role: "user", content: userMessage });
+    setUserMessage("");
+    setMessage({ role: "user", content });
     createMessage({
       id,
       message: {
         role: "user",
-        content: userMessage,
+        content,
       },
       created_at: new Date(),
     });
-    const result = await streamText({
-      model,
-      system:
-        "Eres un asistente virtual útil. Tu nombre es Damaris. Sirves para la planificación de Viajes turísticos. Tus preguntas y respuestas deben ser precisos. Por cada lugar muestra como llegar, si tienen algunos servicios como restaurante, hospedaje, similares y el presupuesto por unos dias.",
-      messages: [...messages, { role: "user", content: userMessage }],
-      maxTokens: 1000,
+
+    const result = await damaris({
+      messages: [...messages, { role: "user", content }],
     });
 
+    setLoading(false);
     let res = "";
     for await (const part of result.textStream) {
       res += part;
+      setTyping(res);
     }
-    setUserMessage("");
+
+    setTyping("");
     setMessage({ role: "assistant", content: res });
     createReply(id, { role: "assistant", content: res });
     setDisabled(false);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!loading && error) {
+    return (
+      <div>
+        <p>error</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <aside className={s.aside}>
@@ -79,6 +97,7 @@ export function Layout({ children }: Props) {
 
       <main className={s.main}>
         {children}
+
         <Form
           length={userMessage.length}
           onSubmit={onSubmit}

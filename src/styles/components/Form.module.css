@@ -9,15 +9,14 @@
   box-shadow: var(--secondary-box-shadow);
 }
 
-.textarea {
+.input {
   width: 100%;
-  height: 42px;
-  resize: none;
   background-color: transparent;
   color: var(--text-color);
 }
 
 .footer {
+  margin-top: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

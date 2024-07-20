@@ -1,5 +1,5 @@
 .container {
-  height: calc(100dvh - 214px);
+  height: calc(100dvh - 203px);
   overflow-y: auto;
   margin: 0 -1rem;
   padding: 0 1rem;
@@ -10,7 +10,7 @@
 
 @media (min-width: 1280px) {
   .container {
-    height: calc(100dvh - 154px);
+    height: calc(100dvh - 143px);
     gap: 1.5rem;
   }
 }

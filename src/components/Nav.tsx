@@ -2,11 +2,8 @@ import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import s from "@/styles/components/Nav.module.css";
 import { Hr } from ".";
-import { useHistoryStore } from "@/store";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+
 import { History } from "./History";
-dayjs.extend(relativeTime);
 
 export function Nav() {
   return (

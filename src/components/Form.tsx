@@ -4,7 +4,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 interface Props {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   length: number;
 }
 
@@ -12,11 +12,11 @@ export function Form({ onSubmit, onChange, length }: Props) {
   const { disabled } = useFormStore();
   return (
     <form onSubmit={onSubmit} className={s.container}>
-      <textarea
-        name="message"
+      <input
+        type="text"
         placeholder="¿Que lugar te gustaría conocer?"
         onChange={onChange}
-        className={s.textarea}
+        className={s.input}
         maxLength={250}
         required
       />

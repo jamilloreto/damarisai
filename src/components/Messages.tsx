@@ -1,10 +1,11 @@
-import { useMessagesStore } from "@/store";
+import { useFormStore, useMessagesStore } from "@/store";
 import { Presentation } from ".";
 import { Message } from "./Message";
 import s from "@/styles/components/Messages.module.css";
 
 export function Messages() {
-  const { messages } = useMessagesStore();
+  const { messages, typing } = useMessagesStore();
+  const { loading } = useFormStore();
 
   if (messages.length === 0) {
     return <Presentation />;
@@ -15,6 +16,8 @@ export function Messages() {
       {messages.map((m, k) => (
         <Message key={k} message={m} />
       ))}
+      {loading && <Message message={{ role: "assistant", content: "..." }} />}
+      {typing && <Message message={{ role: "assistant", content: typing }} />}
     </ul>
   );
 }

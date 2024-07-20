@@ -1,9 +1,6 @@
-import { streamText } from "ai";
 import { useEffect, useState } from "react";
-import { model } from "@/lib";
-import { Form, Layout, Messages } from "@/components";
+import { Layout, Messages } from "@/components";
 import { useHistoryStore, useMessagesStore } from "@/store";
-import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 
 export default function Page() {

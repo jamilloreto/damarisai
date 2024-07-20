@@ -4,3 +4,4 @@ export * from "./Form";
 export * from "./Hr";
 export * from "./Presentation";
 export * from "./Messages";
+export * from "./Error";

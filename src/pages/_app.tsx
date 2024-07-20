@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo
-        title="Damaris AI"
+        title="Damaris"
         themeColor="var(--body-bg-color)"
         description="Damaris AI, es tu asistente virtual y te ayudará a planificar tus viajes turísticos."
         canonical="https://damarisai.vercel.app/"
