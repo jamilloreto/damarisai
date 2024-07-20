@@ -27,8 +27,8 @@ export const usePromptsStore = create(
           prompts: [
             `¿Que lugares turísticos me recomiendas visitar en ${city}?`,
             `¿Cual es el lugar turístico mas visitado en ${city}?`,
-            `¿Que zonas turísticos cercanas hay de la ciudad de ${city}?`,
-            `¿Que zonas turísticos cercanas hay a la ${region}?`,
+            `¿Que zonas turísticas cercanas hay de la ciudad de ${city}?`,
+            `¿Que zonas turísticas cercanas hay a la ${region}?`,
             `¿Que lugares turísticos me recomiendas visitar en ${region}?`,
             `¿Cual es el lugar turístico mas popular en ${region}?`,
             `¿Que lugares turísticos me recomiendas visitar en ${country}?`,
