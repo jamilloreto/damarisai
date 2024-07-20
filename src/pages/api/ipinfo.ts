@@ -1,11 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { publicIpv4 } from "public-ip";
+import requestIp from "request-ip";
 
-export default async function handler(_: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
-    console.log("apiiiiiiiii");
-    const ip = await publicIpv4();
+    const ip = requestIp.getClientIp(req);
     if (!ip) return res.status(500).json({});
 
     const fetching = await fetch(
