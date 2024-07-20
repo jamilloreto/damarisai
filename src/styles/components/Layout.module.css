@@ -57,6 +57,7 @@
     display: grid;
     grid-template-columns: 40px 1fr;
     align-items: center;
+    user-select: none;
   }
 
   .damaris {

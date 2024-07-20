@@ -8,15 +8,15 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo
-        title="Damaris"
+        title="Damaris AI"
         themeColor="var(--body-bg-color)"
         description="Damaris AI, es tu asistente virtual y te ayudará a planificar tus viajes turísticos."
-        canonical="https://damarisai.vercel.app/"
+        canonical="https://damarisai.com/"
         additionalLinkTags={[
           {
             rel: "icon",
             type: "image/x-icon",
-            href: "https://damarisai.vercel.app/favicon.ico",
+            href: "https://damarisai.com/favicon.ico",
           },
         ]}
         additionalMetaTags={[
@@ -54,13 +54,13 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         ]}
         openGraph={{
-          url: "https://damarisai.vercel.app/",
-          title: "Damaris | Asistente Virtual",
+          url: "https://damarisai.com/",
+          title: "Damaris AI | Asistente Virtual",
           description:
             "¡Damaris AI! es tu asistente virtual y te ayudará a planificar tus viajes turísticos.",
           images: [
             {
-              url: "https://damarisai.vercel.app/logo.png",
+              url: "https://damarisai.com/logo.png",
               type: "image/png",
               height: 300,
               width: 300,

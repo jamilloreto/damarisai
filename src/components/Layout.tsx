@@ -8,7 +8,7 @@ import { Nav } from "./Nav";
 import { Form } from "./Form";
 import { useState } from "react";
 import { useFormStore, useHistoryStore, useMessagesStore } from "@/store";
-
+import { Error } from "./Error";
 import Link from "next/link";
 import { Drawer } from "./Drawer";
 import { useGetIpInfo } from "@/hooks";
@@ -28,11 +28,7 @@ export function Layout({ children }: Props) {
   }
 
   if (!loading && error) {
-    return (
-      <div>
-        <p>error</p>
-      </div>
-    );
+    return <Error status={500} />;
   }
 
   return (
@@ -45,7 +41,7 @@ export function Layout({ children }: Props) {
 
           <div className={s.logo}>
             <Logo size={30} />
-            <b className={s.damaris}>Damaris</b>
+            <b className={s.damaris}>Damaris AI</b>
           </div>
 
           <button className={s.menu} onClick={() => setOpen(true)}>
