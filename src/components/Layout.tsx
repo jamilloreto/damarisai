@@ -8,8 +8,7 @@ import { Nav } from "./Nav";
 import { Form } from "./Form";
 import { useState } from "react";
 import { useFormStore, useHistoryStore, useMessagesStore } from "@/store";
-import { v4 as uuidv4 } from "uuid";
-import { damaris } from "@/lib";
+
 import Link from "next/link";
 import { Drawer } from "./Drawer";
 import { useGetIpInfo } from "@/hooks";
@@ -21,47 +20,8 @@ interface Props {
 
 export function Layout({ children }: Props) {
   const { loading, error } = useGetIpInfo();
-  const { messages } = useMessagesStore();
-  const { setTyping, setMessage } = useMessagesStore();
-  const { createMessage, createReply } = useHistoryStore();
-  const [userMessage, setUserMessage] = useState<string>("");
-  const { setDisabled, setLoading } = useFormStore();
+
   const [open, setOpen] = useState<boolean>(false);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setDisabled(true);
-    setLoading(true);
-    const content = userMessage;
-    e.currentTarget.reset();
-    const id = uuidv4();
-    setUserMessage("");
-    setMessage({ role: "user", content });
-    createMessage({
-      id,
-      message: {
-        role: "user",
-        content,
-      },
-      created_at: new Date(),
-    });
-
-    const result = await damaris({
-      messages: [...messages, { role: "user", content }],
-    });
-
-    setLoading(false);
-    let res = "";
-    for await (const part of result.textStream) {
-      res += part;
-      setTyping(res);
-    }
-
-    setTyping("");
-    setMessage({ role: "assistant", content: res });
-    createReply(id, { role: "assistant", content: res });
-    setDisabled(false);
-  };
 
   if (loading) {
     return <Loading />;
@@ -98,11 +58,7 @@ export function Layout({ children }: Props) {
       <main className={s.main}>
         {children}
 
-        <Form
-          length={userMessage.length}
-          onSubmit={onSubmit}
-          onChange={(e) => setUserMessage(e.target.value)}
-        />
+        <Form />
       </main>
 
       {open && <Drawer setOpen={setOpen} />}

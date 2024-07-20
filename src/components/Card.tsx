@@ -1,7 +1,12 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import s from "@/styles/components/Card.module.css";
 import { damaris } from "@/lib";
-import { useFormStore, useHistoryStore, useMessagesStore } from "@/store";
+import {
+  useFormStore,
+  useHistoryStore,
+  useMessagesStore,
+  usePromptsStore,
+} from "@/store";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -13,6 +18,8 @@ export function Card({ title }: Props) {
   const { setTyping, setMessage } = useMessagesStore();
   const { createMessage, createReply } = useHistoryStore();
   const { setDisabled, setLoading } = useFormStore();
+  const { city, country, region } = usePromptsStore();
+
   const onClick = async () => {
     setLoading(true);
     setDisabled(true);
@@ -29,6 +36,9 @@ export function Card({ title }: Props) {
 
     const result = await damaris({
       messages: [...messages, { role: "user", content: title }],
+      city,
+      country,
+      region,
     });
     setLoading(false);
     let res = "";
