@@ -8,7 +8,7 @@ export default function Page() {
 
   return (
     <div>
-      <p>Test</p>
+      <p>Test 5</p>
       <span>
         {new Date().toLocaleDateString("es", {
           day: "2-digit",
@@ -16,12 +16,7 @@ export default function Page() {
         })}
       </span>
       <p>----</p>
-      <span>
-        {new Date(`${date} 00:00:00`).toLocaleDateString("es", {
-          day: "2-digit",
-          month: "long",
-        })}
-      </span>
+      <span>{dayjs(date).format("ll")}</span>
     </div>
   );
 }
