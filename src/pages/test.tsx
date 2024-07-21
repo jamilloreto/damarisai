@@ -10,15 +10,14 @@ export default function Page() {
     <div>
       <p>Test</p>
       <span>
-        {new Date(new Date()).toLocaleDateString("es", {
+        {new Date().toLocaleDateString("es", {
           day: "2-digit",
           month: "long",
         })}
       </span>
       <p>----</p>
-
       <span>
-        {new Date(new Date(date).getTime()).toLocaleDateString("es", {
+        {new Date(`${date} 00:00:00`).toLocaleDateString("es", {
           day: "2-digit",
           month: "long",
         })}
