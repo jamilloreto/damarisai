@@ -30,7 +30,8 @@ export default function App({ Component, pageProps }: AppProps) {
           },
           {
             name: "keywords",
-            content: "damaris, damaris ai, asistente virtual",
+            content:
+              "damaris ai, asistente virtual, planificación de viajes turísticos",
           },
           {
             name: "application-name",
@@ -46,11 +47,11 @@ export default function App({ Component, pageProps }: AppProps) {
           },
           {
             name: "author",
-            content: "Damaris",
+            content: "Damaris ai",
           },
           {
             property: "dc:creator",
-            content: "Damaris",
+            content: "Damaris ai",
           },
         ]}
         openGraph={{
