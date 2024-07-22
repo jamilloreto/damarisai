@@ -1,6 +1,7 @@
 .container {
   display: flex;
   gap: 0.5rem;
+  word-wrap: break-word;
 }
 
 .user {
