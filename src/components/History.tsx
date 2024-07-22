@@ -23,6 +23,7 @@ export function History() {
               month: "long",
             })}
           </span>
+          <span className={s.dateM}>{d}</span>
           <article className={s.wrapMessage}>
             {history?.map((h, k) => (
               <div key={k}>
