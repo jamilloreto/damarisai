@@ -11,7 +11,7 @@ export default function Page() {
     <div>
       <p>Test 8</p>
       <b>
-        {new Date("2024-07-21").toLocaleDateString("es", {
+        {new Date("2024-07-21 00:00:00").toLocaleDateString("es", {
           day: "2-digit",
           month: "long",
           year: "numeric",
