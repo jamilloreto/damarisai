@@ -5,17 +5,16 @@ dayjs.extend(localizedFormat).locale("es");
 
 export default function Page() {
   const date = new Date().toLocaleDateString();
-  const newDate = new Date(date);
+  const parts = date.split("/");
+  const newFormat = `${parts[2]}-0${parts[0]}-${parts[1]}`;
   return (
     <div>
-      <p>Test 5</p>
-      <span>{date}</span>
-
-      <p>----</p>
+      <p>Test 8</p>
       <b>
-        {new Date(newDate).toLocaleDateString("es", {
+        {new Date("2024-07-21").toLocaleDateString("es", {
           day: "2-digit",
           month: "long",
+          year: "numeric",
         })}
       </b>
     </div>
