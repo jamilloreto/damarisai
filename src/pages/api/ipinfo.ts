@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    /*
     const ip = requestIp.getClientIp(req);
     if (!ip) return res.status(500).json({});
 
@@ -21,10 +20,7 @@ export default async function handler(
     const region = geo.location.principalSubdivision;
     const city = geo.location.city;
 
-   */
-    return res
-      .status(200)
-      .json({ country: "Peru", region: "Ancash", city: "Chimbote" });
+    return res.status(200).json({ country, region, city });
   } catch (err) {
     return res.status(500).json({});
   }
