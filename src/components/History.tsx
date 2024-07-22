@@ -12,6 +12,7 @@ export function History() {
   );
 
   const setDates = Array.from(new Set(onlyDates));
+
   return (
     <ul className={s.messages}>
       {setDates?.map((d, k) => (
