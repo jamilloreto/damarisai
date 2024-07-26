@@ -6,7 +6,6 @@ import s from "@/styles/components/History.module.css";
 export function History() {
   const { history } = useHistoryStore();
   const { removeMessage } = useHistoryStore();
-
   const onlyDates = history.map((h) =>
     new Date(h.created_at).toLocaleDateString("es")
   );
@@ -21,7 +20,7 @@ export function History() {
           <article className={s.wrapMessage}>
             {history?.map((h, k) => (
               <div key={k}>
-                {d === new Date(h.created_at).toLocaleDateString() && (
+                {d === new Date(h.created_at).toLocaleDateString("es") && (
                   <div className={s.message}>
                     <Link
                       href={`/m/${h.id}`}

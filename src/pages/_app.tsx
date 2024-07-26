@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <DefaultSeo
         title="Damaris AI"
         themeColor="var(--body-bg-color)"
-        description="Damaris AI, es tu asistente virtual y te ayudará a planificar tus viajes turísticos."
+        description="Damaris AI, es tu asistente virtual y te ayudará a conocer nuevos lugares turísticos para tus viajes de aventura."
         canonical="https://damarisai.com/"
         additionalLinkTags={[
           {
@@ -30,8 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
           },
           {
             name: "keywords",
-            content:
-              "damaris ai, asistente virtual, planificación de viajes turísticos",
+            content: "damaris ai, damaris, asistente virtual",
           },
           {
             name: "application-name",
@@ -58,7 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
           url: "https://damarisai.com/",
           title: "Damaris AI | Asistente Virtual",
           description:
-            "¡Damaris AI! es tu asistente virtual y te ayudará a planificar tus viajes turísticos.",
+            "¡Damaris AI! es tu asistente virtual y te ayudará a conocer nuevos lugares turísticos para tus viajes de aventura.",
           images: [
             {
               url: "https://damarisai.com/logo.png",
