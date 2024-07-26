@@ -8,7 +8,7 @@ export function History() {
   const { removeMessage } = useHistoryStore();
 
   const onlyDates = history.map((h) =>
-    new Date(h.created_at).toLocaleDateString()
+    new Date(h.created_at).toLocaleDateString("es")
   );
 
   const setDates = Array.from(new Set(onlyDates));
@@ -17,13 +17,7 @@ export function History() {
     <ul className={s.messages}>
       {setDates?.map((d, k) => (
         <li key={k}>
-          <span className={s.date}>
-            {new Date(d).toLocaleDateString("es", {
-              day: "numeric",
-              month: "long",
-            })}
-          </span>
-          <span className={s.dateM}>{d}</span>
+          <span className={s.date}>{d}</span>
           <article className={s.wrapMessage}>
             {history?.map((h, k) => (
               <div key={k}>

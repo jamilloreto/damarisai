@@ -24,15 +24,10 @@
   background-color: var(--main-hover-bg-color);
 }
 
-.date,
-.dateM {
+.date {
   padding: 0 0.5rem;
   color: var(--secondary-text-color);
   margin: 0.5rem 0;
-}
-
-.date {
-  display: none;
 }
 
 .wrapMessages {
@@ -89,14 +84,4 @@
 
 .message:hover {
   background-color: var(--main-hover-bg-color);
-}
-
-@media (min-width: 1280px) {
-  .date {
-    display: block;
-  }
-
-  .dateM {
-    display: none;
-  }
 }
