@@ -7,6 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
+    /*
     const ip = requestIp.getClientIp(req);
     if (!ip) return res.status(500).json({});
 
@@ -20,23 +21,37 @@ export default async function handler(
     const country = geo.country.name;
     const region = geo.location.principalSubdivision;
     const city = geo.location.city;
+*/
 
     const result = await getPlaces({
-      country,
-      region,
-      city,
+      country: "Perú",
+      region: "La Libertad",
+      city: "Trujillo",
     });
 
-    const prompts = result.text
-      .replace(/(\r\n|\n|\r|python|  |#|=|"|```)/gm, "")
+    const start = result.text.indexOf("[");
+    const end = result.text.lastIndexOf("]") + 1;
+    const places = result.text.slice(start, end);
+
+    const prompts = places
+      .replace(/(\r\n|\n|\r|Trujillo|Perú|La Libertad|  |#|=|"|```)/gm, "")
+      .replaceAll("/", "")
       .replaceAll("[", "")
       .replaceAll("]", "")
+      .trim()
       .split(",");
 
+    console.log({
+      country: "Peru",
+      region: "La libertad",
+      city: "Trujillo",
+      prompts,
+    });
+
     return res.status(200).json({
-      country,
-      region,
-      city,
+      country: "Peru",
+      region: "La libertad",
+      city: "Trujillo",
       prompts,
     });
   } catch (err) {

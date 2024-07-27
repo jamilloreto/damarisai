@@ -56,8 +56,8 @@ export function Card({ title }: Props) {
       <p>{title}</p>
 
       <ChevronRightIcon
-        width={22}
-        height={22}
+        width={20}
+        height={20}
         className={s.icon}
         color="var(--secondary-text-color)"
       />
