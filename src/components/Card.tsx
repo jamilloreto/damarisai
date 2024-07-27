@@ -54,14 +54,13 @@ export function Card({ title }: Props) {
   return (
     <li className={s.container} onClick={onClick}>
       <p>{title}</p>
-      <div className={s.icon}>
-        <ChevronRightIcon
-          width={22}
-          height={22}
-          className={s.icon}
-          color="var(--secondary-text-color)"
-        />
-      </div>
+
+      <ChevronRightIcon
+        width={22}
+        height={22}
+        className={s.icon}
+        color="var(--secondary-text-color)"
+      />
     </li>
   );
 }

@@ -1,7 +1,7 @@
-export function getRandom(): number[] {
+export function getRandom(length: number): number[] {
   const numbers: number[] = [];
-  while (numbers.length < 4) {
-    const i = Math.floor(Math.random() * 26);
+  while (numbers.length < 6) {
+    const i = Math.floor(Math.random() * length);
     if (!numbers.includes(i)) {
       numbers.push(i);
     }

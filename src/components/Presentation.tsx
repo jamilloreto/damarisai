@@ -3,13 +3,15 @@ import { Cards } from "./Cards";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { getRandom } from "@/utils";
+import { usePromptsStore } from "@/store";
 
 export function Presentation() {
-  const [prompts, setPrompts] = useState<number[]>([]);
+  const { prompts } = usePromptsStore();
+  const [promptsIndex, setPromptsIndex] = useState<number[]>([]);
 
   useEffect(() => {
-    setPrompts(getRandom());
-  }, []);
+    setPromptsIndex(getRandom(prompts.length));
+  }, [prompts.length]);
 
   return (
     <section className={s.container}>
@@ -17,8 +19,11 @@ export function Presentation() {
         <h1>Hola soy Damaris.</h1>
         <h2>¿Que lugar te gustaría conocer?</h2>
       </article>
-      <Cards data={prompts} />
-      <button className={s.refresh} onClick={() => setPrompts(getRandom())}>
+      <Cards data={promptsIndex} />
+      <button
+        className={s.refresh}
+        onClick={() => setPromptsIndex(getRandom(prompts.length))}
+      >
         <ArrowPathIcon width={20} height={20} />
         Refrescar
       </button>

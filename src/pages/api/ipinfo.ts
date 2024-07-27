@@ -1,3 +1,4 @@
+import { getPlaces } from "@/lib";
 import type { NextApiRequest, NextApiResponse } from "next";
 import requestIp from "request-ip";
 
@@ -6,7 +7,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    /*
     const ip = requestIp.getClientIp(req);
     if (!ip) return res.status(500).json({});
 
@@ -20,11 +20,25 @@ export default async function handler(
     const country = geo.country.name;
     const region = geo.location.principalSubdivision;
     const city = geo.location.city;
-   */
 
-    return res
-      .status(200)
-      .json({ country: "Peru", region: "Ancash", city: "Chimbote" });
+    const result = await getPlaces({
+      country,
+      region,
+      city,
+    });
+
+    const prompts = result.text
+      .replace(/(\r\n|\n|\r|python|  |"|```)/gm, "")
+      .replaceAll("[", "")
+      .replaceAll("]", "")
+      .split(",");
+
+    return res.status(200).json({
+      country,
+      region,
+      city,
+      prompts,
+    });
   } catch (err) {
     return res.status(500).json({});
   }

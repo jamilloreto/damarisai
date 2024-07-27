@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export function useGetIpInfo() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const { setPrompt } = usePromptsStore();
+  const { setData } = usePromptsStore();
 
   useEffect(() => {
     const getIpInfo = async () => {
@@ -19,10 +19,11 @@ export function useGetIpInfo() {
           return;
         }
         const data = await res.json();
-        setPrompt({
+        setData({
           country: data.country,
           city: data.city,
           region: data.region,
+          prompts: data.prompts,
         });
         setLoading(false);
       } catch (_) {
@@ -32,6 +33,6 @@ export function useGetIpInfo() {
     };
 
     getIpInfo();
-  }, [setPrompt]);
+  }, [setData]);
   return { loading, error };
 }
