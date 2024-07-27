@@ -28,7 +28,7 @@ export default async function handler(
     });
 
     const prompts = result.text
-      .replace(/(\r\n|\n|\r|python|  |"|```)/gm, "")
+      .replace(/(\r\n|\n|\r|python|  |#|=|"|```)/gm, "")
       .replaceAll("[", "")
       .replaceAll("]", "")
       .split(",");
